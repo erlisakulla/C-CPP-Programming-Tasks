@@ -1,0 +1,45 @@
+a) If we comment out "using namespace std" the program won't compile. There would be an error like "cout, endl, cin, string was not declared in the scope", which means we have to include std::cout, std::endl, std::cin, std::__cxx11::string in our program each case we want to use the std library functions.
+
+
+b) If we remove the Critter:: prefix in one of the methods, there'd be the following error "‘name’ was not declared in this scope", and in order for it to work we need to state the function's class.
+
+Error messages:
+
+Critter.cpp:14:23: error: variable or field 'setName' declared void
+ void Critter::setName(string& newname)
+                       ^~~~~~
+Critter.cpp:14:23: error: 'string' was not declared in this scope
+Critter.cpp:14:23: note: suggested alternative:
+In file included from /usr/include/c++/8/iosfwd:39,
+                 from /usr/include/c++/8/ios:38,
+                 from /usr/include/c++/8/ostream:38,
+                 from /usr/include/c++/8/iostream:39,
+                 from Critter.cpp:8:
+/usr/include/c++/8/bits/stringfwd.h:74:33: note:   'std::__cxx11::string'
+   typedef basic_string    string;
+                                 ^~~~~~
+Critter.cpp:14:31: error: 'newname' was not declared in this scope
+ void Critter::setName(string& newname)
+                               ^~~~~~~
+Critter.cpp:14:31: note: suggested alternative: 'rename'
+ void Critter::setName(string& newname)
+                               ^~~~~~~
+                               rename
+Critter.cpp: In member function 'void Critter::print()':
+Critter.cpp:24:2: error: 'cout' was not declared in this scope
+  cout << "I am " << name << ". My hunger level is " << hunger << "." << endl;
+  ^~~~
+Critter.cpp:24:2: note: suggested alternative:
+In file included from Critter.cpp:8:
+/usr/include/c++/8/iostream:61:18: note:   'std::cout'
+   extern ostream cout;  /// Linked to standard output
+                  ^~~~
+Critter.cpp:24:73: error: 'endl' was not declared in this scope
+  cout << "I am " << name << ". My hunger level is " << hunger << "." << endl;
+                                                                         ^~~~
+Critter.cpp:24:73: note: suggested alternative:
+In file included from /usr/include/c++/8/iostream:39,
+                 from Critter.cpp:8:
+/usr/include/c++/8/ostream:590:5: note:   'std::endl'
+     endl(basic_ostream<_CharT, _Traits>& __os)
+     ^~~~
