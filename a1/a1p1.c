@@ -1,6 +1,6 @@
 /*
 CH-230-A
-a1p2.c
+a1p1.c
 Erlisa Kulla
 e.kulla@jacobs-university.de
 */
